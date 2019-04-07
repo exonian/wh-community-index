@@ -81,9 +81,10 @@ class Scraper(object):
                 self.existing_data = json.loads(data)
             except json.JSONDecodeError:
                 self.existing_data = {}
+        print('Loaded {} posts from disk'.format(len(self.existing_data.keys())))
     
     def dump_data(self):
-        print('  Writing {} posts to disk'.format(len(self.data.keys())))
+        print('Writing {} posts to disk'.format(len(self.data.keys())))
         posts_path = self.get_data_file_path()
         with open(posts_path, 'w') as f:
             f.write(json.dumps(self.data))
